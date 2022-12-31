@@ -12,17 +12,6 @@ def main():
     return flask.render_template('index.html')
 
 
-
-
-
-@app.route('/gt_url')
-def gt():
-    #html for getting text from client
-    return '''
-           <form action="get_text_url" method="POST">
-           <input name="textvar" type="text"/>
-           </form>
-           '''
 @app.route('/get_text_url', methods=["POST"])
 def get_text():
     #flask for getting text from client
@@ -31,22 +20,6 @@ def get_text():
     return flask.redirect(flask.url_for('main'))
 
 
-
-
-
-
-
-@app.route('/gf_url')
-def gf():
-    #html for getting files from client
-    return '''
-           <form action="get_file_url"
-            enctype="multipart/form-data"
-            method="post">
-               <input name="file" type="file"/>
-               <button>send</button>
-           </form>
-            '''
 @app.route('/get_file_url', methods=["POST"])
 def get_file():
     #flask for getting files from client
@@ -56,23 +29,10 @@ def get_file():
     return flask.redirect(flask.url_for('main'))
 
 
-
-
-
-
-
-@app.route('/sf_url')
-def sf():
-    #url includes path to file
-    return '''
-           <a href="send_file_url/folder/test_file.txt">
-           name</a>
-           '''
 @app.route('/send_file_url/folder/test_file.txt')
 def send_file():
     return flask.send_file('folder/test_file.txt',
                            download_name='test_file.txt')
-
 
 
 if __name__ == '__main__':
