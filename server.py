@@ -9,11 +9,7 @@ def main():
     #basic functions of a server
     #are get user text data and
     #to get and send files
-    return '''
-           <a href="gt_url">get text from client</a><br>
-           <a href="gf_url">get file from client</a><br>
-           <a href="sf_url">send file to client</a>
-           '''
+    return flask.render_template('index.html')
 
 
 
