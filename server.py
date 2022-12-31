@@ -1,15 +1,15 @@
 #!/usr/bin/python3
 
 import flask
+from utility import get_file_list
 
 app = flask.Flask(__name__)
 
 @app.route('/')
 def main():
-    #basic functions of a server
-    #are get user text data and
-    #to get and send files
-    return flask.render_template('index.html')
+    filelist = get_file_list()
+    return flask.render_template('index.html',
+                                 filelist = filelist)
 
 
 @app.route('/get_text_url', methods=["POST"])
@@ -25,14 +25,15 @@ def get_file():
     #flask for getting files from client
     gfob = flask.request.files["file"]
     name = gfob.filename
-    gfob.save('folder/' + name)
+    gfob.save('assets/' + name)
     return flask.redirect(flask.url_for('main'))
 
 
-@app.route('/send_file_url/folder/test_file.txt')
-def send_file():
-    return flask.send_file('folder/test_file.txt',
-                           download_name='test_file.txt')
+@app.route('/send_file_url/assets/<cargo>')
+def send_file(cargo):
+    print(cargo)
+    return flask.send_file('assets/'+cargo,
+                            download_name=cargo)
 
 
 if __name__ == '__main__':

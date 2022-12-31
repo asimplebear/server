@@ -2,8 +2,6 @@
 
 <div>
  <form action="get_text_url" method="POST">
-  put things here:
-  <br/>
   <input name="textvar" type="text"/>
  </form>
 </div>
@@ -21,8 +19,10 @@
 
  <hr>
 
- <div>
-  <a href="send_file_url/folder/test_file.txt">name</a>
- </div>
+{% for i in filelist %}
+<hr>
+<a href="send_file_url/assets/{{ i }}">{{ i }}</a>
+{% endfor %}
+
 
 </html>
