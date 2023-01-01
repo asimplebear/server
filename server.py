@@ -25,14 +25,14 @@ def get_file():
     #flask for getting files from client
     gfob = flask.request.files["file"]
     name = gfob.filename
-    gfob.save('assets/' + name)
+    gfob.save('static/assets/files/' + name)
     return flask.redirect(flask.url_for('main'))
 
 
-@app.route('/send_file_url/assets/<cargo>')
+@app.route('/send_file_url/static/assets/files/<cargo>')
 def send_file(cargo):
     print(cargo)
-    return flask.send_file('assets/'+cargo,
+    return flask.send_file('static/assets/files/'+cargo,
                             download_name=cargo)
 
 
